@@ -3,9 +3,9 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
 
 urlpatterns = [
-    path('city/', views.city_list),
-    path('city/street/', views.street_list),
-    path('shop/', views.shop_list),
+    path('city/street/', views.StreetList.as_view()),
+    path('city/', views.CityList.as_view()),
+    path('shop/', views.ShopList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

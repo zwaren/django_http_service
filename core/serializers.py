@@ -6,16 +6,16 @@ from .models import City, Shop, Street
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = ['id', 'name']
+        fields = '__all__'
 
 
 class ShopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shop
-        fields = ['id', 'name', 'city', 'street', 'house', 'open_time', 'close_time']
+        fields = '__all__'
 
 
 class StreetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Street
-        fields = ['id', 'name', 'city']
+        fields = '__all__'
