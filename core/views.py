@@ -29,21 +29,14 @@ class StreetList(APIView):
 class ShopList(APIView):
     def get(self, request, format=None):
         shops = Shop.objects.all()
-        err = False
 
         street_name = request.GET.get('street')
         if street_name:
-            street = Street.objects.get(name=street_name)
-            if not street:
-                err = True
-            shops = shops.filter(street=street.id)
+            shops = shops.filter(street__name=street_name)
 
         city_name = request.GET.get('city')
         if city_name:
-            city = City.objects.get(name=city_name)
-            if not city:
-                err = True
-            shops = shops.filter(city=city.id)
+            shops = shops.filter(city__name=city_name)
 
         is_open = request.GET.get('open')
         nowtime = datetime.datetime.now().time()
@@ -53,8 +46,6 @@ class ShopList(APIView):
             shops = shops.filter(Q(open_time__gt=nowtime) | Q(close_time__lt=nowtime))
 
         serializer = ShopSerializer(shops, many=True)
-        if err:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data)
 
     def post(self, request, format=None):
