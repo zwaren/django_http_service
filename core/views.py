@@ -1,15 +1,12 @@
-from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.utils import timezone
-from rest_framework import status
-from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .exceptions import CityDoesntExistException, StreetDoesntExistException
 from .models import City, Shop, Street
-from .serializers import CitySerializer, ShopSerializer, StreetSerializer, UserSerializer
+from .serializers import CitySerializer, ShopSerializer, StreetSerializer
 
 
 class CityList(ListAPIView):
@@ -68,8 +65,3 @@ class ShopList(ListCreateAPIView):
 
         serializer = self.get_serializer_class()(shops, many=True)
         return Response(serializer.data)
-
-
-class Registration(CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
