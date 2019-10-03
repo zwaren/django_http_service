@@ -19,7 +19,7 @@ class StreetList(ListAPIView):
     serializer_class = StreetSerializer
 
     def get_queryset(self):
-        streets = self.queryset
+        streets = super().get_queryset()
 
         city_id = self.request.GET.get('city_id')
         if city_id:
@@ -37,7 +37,7 @@ class ShopList(ListCreateAPIView):
     serializer_class = ShopSerializer
 
     def get_queryset(self):
-        shops = self.queryset
+        shops = super().get_queryset()
 
         street_name = self.request.GET.get('street')
         if street_name:

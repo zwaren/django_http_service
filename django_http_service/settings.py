@@ -26,7 +26,11 @@ SECRET_KEY = '8k&!lp54hw9pcuw$r@e*&8f0u$y#&x3i-(95mv#_-ks-n1st=r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    'web',
+]
 
 
 # Application definition
@@ -83,7 +87,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         'PASSWORD': 'django',
-        'HOST': '127.0.0.1',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
